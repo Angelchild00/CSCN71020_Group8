@@ -3,6 +3,8 @@
 
 #include "rectangleSolver.h"
 
+// Project 1 - Leanne Ryan Luis
+
 // implementation of the rectangleSolver library
 
 
@@ -44,3 +46,4 @@ int PerimeterFrom4Points(int x1, int y1, int x2, int y2, int x3, int y3, int x4,
 float AreaOfRectangle(int length, int width) {
 	// area = length * width
 }
+
