@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdbool.h>
-#include <limits.h>
 #include "main.h"
 #include "triangleSolver.h"
+#include "rectangleSolver.h"
+#define POINTS		4
 
 int side = 0;
 
@@ -25,6 +26,8 @@ int main() {
 			break;
 		case 2:
 			printf_s("Rectangle selected\n");
+			CORNERS points[POINTS];
+			GetInput(points);
 
 		case 0:
 			continueProgram = false;
@@ -59,23 +62,4 @@ int printShapeMenu() {
 	return shapeChoice;
 }
 
-int* getTriangleSides(int* triangleSides) {
-	printf_s("Enter the three sides of the triangle: ");
-	for(int i =0; i < 3; i++)
-		while (true) {
-			if (scanf_s("%d", &triangleSides[i]) != 1 || triangleSides[i] <= 0) {
-				while (getchar() != '\n');
-					printf("Invalid Input. Please enter a positive integer:\n");
-			}
-			else {
-				if (triangleSides[i] > 0 && triangleSides[i] <= INT_MAX) {
-					break;
-				}
-				else {
-					printf("Input is too large. Please enter a smaller integer:\n");
-				}
-			}
-		}
-	return triangleSides;
-}
 	
