@@ -28,7 +28,7 @@ int main() {
 			printf_s("Rectangle selected\n");
 			CORNERS points[POINTS];
 			GetInput(points);
-
+			break;
 		case 0:
 			continueProgram = false;
 			break;
