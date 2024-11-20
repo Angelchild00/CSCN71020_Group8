@@ -16,19 +16,22 @@ void GetInput(CORNERS* points) {
 		int valid = 0;
 		while (!valid) {
 			printf("Enter x and y for point %d:\n", i + 1);
-				if (scanf_s("%d %d", &points[i].x, &points[i].y) == 2) {
-					if (ValidateInput(points[i])) {
+			if (scanf_s("%d %d", &points[i].x, &points[i].y) == 2) {
+				if (ValidateInput(points[i])) {
 					valid = 1;
-					}
-					else {
-					printf("Invalid Input. Please enter positive integers:\n");
-					while (getchar() != '\n');
-					}
 				}
-
+				else {
+					printf("Invalid Input.Please enter Positive integers:\n");
+				}
+			}
+			else {
+				printf("Invalid Input. Please enter positive integers:\n");
+				while (getchar() != '\n');
 			}
 		}
+
 	}
+}
 int ValidateInput(CORNERS points) {
 	if (points.x > 0 && points.y > 0) {
 		return 1;
