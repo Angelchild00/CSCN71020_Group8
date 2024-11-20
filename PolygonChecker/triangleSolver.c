@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
-
+#include <limits.h>
 #include "triangleSolver.h"
 
 char* analyzeTriangle(int side1, int side2, int side3) {
@@ -21,4 +21,23 @@ char* analyzeTriangle(int side1, int side2, int side3) {
 	}
 
 	return result;
+}
+int* getTriangleSides(int* triangleSides) {
+	printf_s("Enter the three sides of the triangle: ");
+	for (int i = 0; i < 3; i++)
+		while (true) {
+			if (scanf_s("%d", &triangleSides[i]) != 1 || triangleSides[i] <= 0) {
+				while (getchar() != '\n');
+				printf("Invalid Input. Please enter a positive integer:\n");
+			}
+			else {
+				if (triangleSides[i] > 0 && triangleSides[i] <= INT_MAX) {
+					break;
+				}
+				else {
+					printf("Input is too large. Please enter a smaller integer:\n");
+				}
+			}
+		}
+	return triangleSides;
 }
