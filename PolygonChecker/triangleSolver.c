@@ -74,10 +74,10 @@ char* doLengthsFormTriangle(int side1, int side2, int side3) {
 	int hypotenuse = sqrt((asquar + bsquar));
 
 	char* result = "";
-	if (hypotenuse == max) {
+	if (hypotenuse == max) {	//may be some buggs from this: it shoudl work in theory, double check during testing
 		bool istriangle = true;
-		float angles[] = (getAngleFromSides(a, b, hypotenuse));
-		char* result = "Given the lengths %d, %d, and %d:\nIsTriangle = TRUE\nAngles are %f, %f, and %f";
+		char* angles = (getAngleFromSides(a, b, max));
+		char* result = "Given the lengths %d, %d, and %d:\nIsTriangle = TRUE\nAngles are %s",angles; 
 		return result;
 	}
 	char* result = "Given the lengths %d, %d, and %d:\nIsTriangle = FALSE";
@@ -85,12 +85,12 @@ char* doLengthsFormTriangle(int side1, int side2, int side3) {
 	return result; 
 }
 
-float getAngleFromSides(int a, int b, int c) {
+char* getAngleFromSides(int a, int b, int c) {
 	float angles[3] = { 0 };
 	//∠A = arccos((b2 + c2 - a2)/2bc)
 	//∠B = arccos((a2 + c2 - b2)/2ac)	//arcos or acos() returns value in rad so must multiply by (180/PI) to get deg
 	//∠C = arccos((a2 + b2 - c2)/2ab)
-
+	char* result = "";
 	float rad1 = acos(((b + c - a) / (2 * b * c)));
 	float angle1 = (rad1 * (180 / PI));
 	float rad2 = acos(((a + c - b) / (2 * a * c)));
@@ -98,5 +98,7 @@ float getAngleFromSides(int a, int b, int c) {
 	float rad3 = acos(((a + b - c) / (2 * a * b)));
 	float angle3 = (rad3 * (180 / PI));
 
-	return  angle1, angle2, angle3;		// this is not a good way of returning it
+	result = "%lf, %lf, and %lf", angle1, angle2, angle3;
+
+	return  result; 	// this is not a good way of returning it
 }
