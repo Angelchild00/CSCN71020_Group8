@@ -40,6 +40,7 @@ int ValidateInput(CORNERS points) {
 		return 0;
 }
 
+// This func should work for whatever points of two.
 double LengthOfTwoPoints(int x1, int x2, int y1, int y2) {
 	//int x1 = CORNERS.x;
 	//int x2 = CORNERS.x;
@@ -47,6 +48,26 @@ double LengthOfTwoPoints(int x1, int x2, int y1, int y2) {
 	//int y2 = CORNERS.y;
 	double lengthoftwo = sqrt(pow((x1 - x2), 2) + pow((y1 - y2), 2));
 	return lengthoftwo;
+}
+
+// This func should work whatever the shape is rectangle or not. 
+double PerimeterFrom4Points(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4) {
+	// find the 4 lengths
+	// perimeter = l1 + l2 + l3 + l4
+	double line1 = sqrt(pow((x1 - x2), 2) + pow((y1 - y2), 2));
+	double line2 = sqrt(pow((x2 - x3), 2) + pow((y2 - y3), 2));
+	double line3 = sqrt(pow((x3 - x4), 2) + pow((y3 - y4), 2));
+	double line4 = sqrt(pow((x4 - x1), 2) + pow((y4 - y1), 2));
+	return line1 + line2 + line3 + line4;
+}
+
+// This func should work only if the shape is rectangle.
+double AreaOfRectangle(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4) {
+	// area = length * width
+	double line1 = sqrt(pow((x1 - x2), 2) + pow((y1 - y2), 2));
+	double line2 = sqrt(pow((x2 - x3), 2) + pow((y2 - y3), 2));
+	double area = line1 * line2;
+	return area;
 }
 
 
