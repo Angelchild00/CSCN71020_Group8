@@ -39,6 +39,17 @@ int ValidateInput(CORNERS points) {
 	else
 		return 0;
 }
+
+double LengthOfTwoPoints(int x1, int x2, int y1, int y2) {
+	//int x1 = CORNERS.x;
+	//int x2 = CORNERS.x;
+	//int y1 = CORNERS.y;
+	//int y2 = CORNERS.y;
+	double lengthoftwo = sqrt(pow((x1 - x2), 2) + pow((y1 - y2), 2));
+	return lengthoftwo;
+}
+
+
 ////main rectangle function
 //char* analyzeRectangle(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4) {
 //	sortPoints(&x1, &y1, &x2, &y2, &x3, &y3, &x4, &y4);
