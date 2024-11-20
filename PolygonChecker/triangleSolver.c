@@ -1,7 +1,10 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <stdbool.h>
+#include <math.h>
 #include <limits.h>
 #include "triangleSolver.h"
+
+#define PI 3.14159265
 
 char* analyzeTriangle(int side1, int side2, int side3) {
 	char* result = "";
@@ -22,6 +25,7 @@ char* analyzeTriangle(int side1, int side2, int side3) {
 
 	return result;
 }
+
 int* getTriangleSides(int* triangleSides) {
 	printf_s("Enter the three sides of the triangle: ");
 	for (int i = 0; i < 3; i++)
@@ -40,4 +44,59 @@ int* getTriangleSides(int* triangleSides) {
 			}
 		}
 	return triangleSides;
+}
+
+char* doLengthsFormTriangle(int side1, int side2, int side3) {
+	// ex. inputs 5, 3, 4
+	//max = 5
+	//hypotenuse = sqrt((3 ^ 2) + (4 ^ 2))
+	//does max == hypotenuse ?
+	//5 == 5 therefore the lengths given, form a triangle
+
+	int max = side1;
+	int a = side2;
+	int b = side3;
+	if (side2 > max) {
+		if (side2 > side3) {
+			max = side2;
+			a = side1;
+			b = side3;
+		}
+		if (side3 > side2) {
+			max = side3;
+			a = side2;
+			b = side3;
+		}
+	}
+	
+	int asquar = a * a;
+	int bsquar = b * b;
+	int hypotenuse = sqrt((asquar + bsquar));
+
+	char* result = "";
+	if (hypotenuse == max) {
+		bool istriangle = true;
+		float angles[] = (getAngleFromSides(a, b, hypotenuse));
+		char* result = "Given the lengths %d, %d, and %d:\nIsTriangle = TRUE\nAngles are %f, %f, and %f";
+		return result;
+	}
+	char* result = "Given the lengths %d, %d, and %d:\nIsTriangle = FALSE";
+
+	return result; 
+}
+
+float getAngleFromSides(int a, int b, int c) {
+	float angles[3] = { 0 };
+	//∠A = arccos((b2 + c2 - a2)/2bc)
+	//∠B = arccos((a2 + c2 - b2)/2ac)	//arcos or acos() returns value in rad so must multiply by (180/PI) to get deg
+	//∠C = arccos((a2 + b2 - c2)/2ab)
+
+	float rad1 = acos(((b + c - a) / (2 * b * c)));
+	float angle1 = (rad1 * (180 / PI));
+	float rad2 = acos(((a + c - b) / (2 * a * c)));
+	float angle2 = (rad2 * (180 / PI));
+	float rad3 = acos(((a + b - c) / (2 * a * b)));
+	float angle3 = (rad3 * (180 / PI));
+
+	return  angle1, angle2, angle3;		// this is not a good way of returning it
 }
