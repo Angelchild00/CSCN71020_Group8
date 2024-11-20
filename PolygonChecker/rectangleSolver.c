@@ -62,7 +62,7 @@ double PerimeterFrom4Points(int x1, int y1, int x2, int y2, int x3, int y3, int 
 }
 
 // This func should work only if the shape is rectangle.
-double AreaOfRectangle(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4) {
+double AreaOfRectangle(int x1, int y1, int x2, int y2, int x3, int y3) {
 	// area = length * width
 	double line1 = sqrt(pow((x1 - x2), 2) + pow((y1 - y2), 2));
 	double line2 = sqrt(pow((x2 - x3), 2) + pow((y2 - y3), 2));
