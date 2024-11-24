@@ -40,6 +40,18 @@ int ValidateInput(CORNERS points) {
 		return 0;
 }
 
+bool CheckAngelOfRectangle(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4) {
+	//So far I don't know to use what function to check the angle of two lines.
+	//Assume a function that use three pointers to define two lines,and then check the angle of these two lines.
+	//return bool, true or false of the angle whether it's 90 degree.parameter to get the bool could use int, or bool?
+	bool FirstAngel = UnknowFunction(x1, y1, x2, y2, x3, y3);
+	bool SecondAngel = UnknowFunction(x2, y2, x3, y3, x4, y4);
+	bool ThirdAngel = UnknowFunction(x3, y3, x4, y4, x1, y1);
+	bool FourthAngel = UnknowFunction(x4, y4, x1, y1, x2, y2);
+	// return true if these four are all 90 degree, others will be false.
+	return FirstAngel && SecondAngel && ThirdAngel && FourthAngel;
+}
+
 // This func should work for whatever points of two.
 double LengthOfTwoPoints(int x1, int x2, int y1, int y2) {
 	//int x1 = CORNERS.x;
