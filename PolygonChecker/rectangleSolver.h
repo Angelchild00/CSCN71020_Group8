@@ -8,6 +8,10 @@ typedef struct corners {
 void GetInput(CORNERS* points);
 int ValidateInput(CORNERS points);
 
+// 
+double PerimeterFrom4Points(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
+double AreaOfRectangle(int x1, int y1, int x2, int y2, int x3, int y3);
+
 double LengthOfTwoPoints(int x1, int x2, int y1, int y2);
 //// utils library for rectangle functions
 //
