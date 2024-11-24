@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PolygonChecker", "PolygonCh
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTest_TriangleSolver", "UnitTest_TriangleSolver\UnitTest_TriangleSolver.vcxproj", "{FE0124F0-12FF-4D37-8DEC-8F1A1F49A00B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTest_RectangleSolver", "UnitTest_RectangleSolver\UnitTest_RectangleSolver.vcxproj", "{FD6313B1-A615-4144-A167-19E03D4AB260}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{FE0124F0-12FF-4D37-8DEC-8F1A1F49A00B}.Release|x64.Build.0 = Release|x64
 		{FE0124F0-12FF-4D37-8DEC-8F1A1F49A00B}.Release|x86.ActiveCfg = Release|Win32
 		{FE0124F0-12FF-4D37-8DEC-8F1A1F49A00B}.Release|x86.Build.0 = Release|Win32
+		{FD6313B1-A615-4144-A167-19E03D4AB260}.Debug|x64.ActiveCfg = Debug|x64
+		{FD6313B1-A615-4144-A167-19E03D4AB260}.Debug|x64.Build.0 = Debug|x64
+		{FD6313B1-A615-4144-A167-19E03D4AB260}.Debug|x86.ActiveCfg = Debug|Win32
+		{FD6313B1-A615-4144-A167-19E03D4AB260}.Debug|x86.Build.0 = Debug|Win32
+		{FD6313B1-A615-4144-A167-19E03D4AB260}.Release|x64.ActiveCfg = Release|x64
+		{FD6313B1-A615-4144-A167-19E03D4AB260}.Release|x64.Build.0 = Release|x64
+		{FD6313B1-A615-4144-A167-19E03D4AB260}.Release|x86.ActiveCfg = Release|Win32
+		{FD6313B1-A615-4144-A167-19E03D4AB260}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
