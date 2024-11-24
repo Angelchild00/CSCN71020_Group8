@@ -40,16 +40,19 @@ int ValidateInput(CORNERS points) {
 		return 0;
 }
 
-bool CheckAngelOfRectangle(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4) {
-	//So far I don't know to use what function to check the angle of two lines.
-	//Assume a function that use three pointers to define two lines,and then check the angle of these two lines.
-	//return bool, true or false of the angle whether it's 90 degree.parameter to get the bool could use int, or bool?
-	bool FirstAngel = UnknowFunction(x1, y1, x2, y2, x3, y3);
-	bool SecondAngel = UnknowFunction(x2, y2, x3, y3, x4, y4);
-	bool ThirdAngel = UnknowFunction(x3, y3, x4, y4, x1, y1);
-	bool FourthAngel = UnknowFunction(x4, y4, x1, y1, x2, y2);
-	// return true if these four are all 90 degree, others will be false.
-	return FirstAngel && SecondAngel && ThirdAngel && FourthAngel;
+bool CheckRightAngle(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4) {
+	//Get length and width of 4 lines.
+	int line1x = x2 - x1; int line1y = y2 - y1;
+	int line2x = x3 - x2; int line2y = y3 - y2;
+	int line3x = x4 - x3; int line3y = y4 - y3;
+	int line4x = x1 - x4; int line4y = y1 - y4;
+	//Calculate every dot product of two cross lines.
+	int DotProduct1 = line1x * line2x + line1y * line2y;
+	int DotProduct2 = line2x * line3x + line2y * line3y;
+	int DotProduct3 = line3x * line4x + line3y * line4y;
+	int DotProduct4 = line4x * line1x + line4y * line1y;
+	//Check if four dot products are all 0, all 0 means it's a rectangle.
+	return DotProduct1 == 0 && DotProduct2 == 0 && DotProduct3 == 0 && DotProduct4 == 0;
 }
 
 // This func should work for whatever points of two.
