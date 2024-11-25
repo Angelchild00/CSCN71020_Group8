@@ -1,29 +1,27 @@
 ﻿#include <stdio.h>
 #include <stdbool.h>
-#include <math.h>
 #include <limits.h>
 #include "triangleSolver.h"
 
 #define PI 3.14159265
 
-char* analyzeTriangle(int side1, int side2, int side3) {
-	char* result = "";
-	if (side1 <= 0 || side2 <= 0 || side3 <= 0) {
-		result = "Not a triangle";
+bool doLengthsFormTriangle(int side1, int side2, int side3) {
+	return ((side1 + side2 > side3) && (side1 + side3 > side2) && (side2 + side3 > side1));
+}
+
+const char* analyzeTriangle(int side1, int side2, int side3) {
+	if (!doLengthsFormTriangle(side1, side2, side3)) {
+		return "Not a triangle";
 	}
 	else if (side1 == side2 && side1 == side3) {
-		result = "Equilateral triangle";
+		return "Equilateral triangle";
 	}
-	else if ((side1 == side2 && side1 != side3) || 
-		(side1 == side3 && side1 != side2))
-	{
-		result = "Isosceles triangle";
+	else if (side1 == side2 || side1 == side3 || side2 == side3) {
+		return "Isosceles triangle";
 	}
 	else {
-		result = "Scalene triangle";
+		return "Scalene triangle";
 	}
-
-	return result;
 }
 
 int* getTriangleSides(int* triangleSides) {
@@ -46,58 +44,16 @@ int* getTriangleSides(int* triangleSides) {
 	return triangleSides;
 }
 
-char* doLengthsFormTriangle(int side1, int side2, int side3) {		// TO DO: might have to make this return a bool
-	// ex. inputs 5, 3, 4											// and, move lines 79-83 to main
-	//max = 5
-	//hypotenuse = sqrt((3 ^ 2) + (4 ^ 2))
-	//does max == hypotenuse ?
-	//5 == 5 therefore the lengths given, form a triangle
 
-	int max = side1;
-	int a = side2;
-	int b = side3;
-	if (side2 > max) {
-		if (side2 > side3) {
-			max = side2;
-			a = side1;
-			b = side3;
-		}
-		if (side3 > side2) {
-			max = side3;
-			a = side2;
-			b = side3;
-		}
-	}
-	
-	int asquar = a * a;
-	int bsquar = b * b;
-	int hypotenuse = sqrt((asquar + bsquar));
 
-	char* result = "";
-	if (hypotenuse == max) {	//may be some buggs from this: it should work in theory, double check during testing
-		bool istriangle = true;
-		char* result1 = ("Given the lengths %d, %d, and %d:\nIsTriangle = TRUE\nAngles are %s",a,b,max, getAngleFromSides(a, b, max));
-		return result1;
-	}
-	char* result2 = ("Given the lengths %d, %d, and %d:\nIsTriangle = FALSE", a,b,max);
-
-	return result2; 
-}
-
-char* getAngleFromSides(int a, int b, int c) {
+const char* getAngleFromSides(int a, int b, int c) {
+	static char result[100];
 	float angles[3] = { 0 };
-	//∠A = arccos((b2 + c2 - a2)/2bc)
-	//∠B = arccos((a2 + c2 - b2)/2ac)	//arcos or acos() returns value in rad so must multiply by (180/PI) to get deg
-	//∠C = arccos((a2 + b2 - c2)/2ab)
-	char* result = "";
-	float rad1 = acos(((b + c - a) / (2 * b * c)));
-	float angle1 = (rad1 * (180 / PI));
-	float rad2 = acos(((a + c - b) / (2 * a * c)));
-	float angle2 = (rad2 * (180 / PI));
-	float rad3 = acos(((a + b - c) / (2 * a * b)));
-	float angle3 = (rad3 * (180 / PI));
 
-	result = "%lf, %lf, and %lf", angle1, angle2, angle3;
+	angles[0] = (float)(acos((double)(b * b + c * c - a * a) / (2 * b * c)) * (180 / PI));
+	angles[1] = (float)(acos((double)(a * a + c * c - b * b) / (2 * a * c)) * (180 / PI));
+	angles[2] = (float)(acos((double)(a * a + b * b - c * c) / (2 * a * b)) * (180 / PI));
 
-	return  result; 	// this is not a good way of returning it
+	snprintf(result, sizeof(result), "%.2f, %.2f, and %.2f", angles[0], angles[1], angles[2]);
+	return result;
 }

@@ -17,13 +17,18 @@ int main() {
 		switch (shapeChoice)
 		{
 		case 1:
-			printf_s("Triangle selected.\n");
+			printf("Triangle selected.\n");
 			int triangleSides[3] = { 0, 0, 0 };
-			int* triangleSidesPtr = getTriangleSides(triangleSides);
-			//printf_s("! %d\n", triangleSidesPtr[0]);
-			// doLengthsFormTriangle(triangleSidesPtr[0], triangleSidesPtr[1], triangleSidesPtr[2])	
-			result = analyzeTriangle(triangleSidesPtr[0], triangleSidesPtr[1], triangleSidesPtr[2]);
-			printf_s("%s\n", result);
+			getTriangleSides(triangleSides);
+			if (doLengthsFormTriangle(triangleSides[0], triangleSides[1], triangleSides[2])) {
+				const char* result = analyzeTriangle(triangleSides[0], triangleSides[1], triangleSides[2]);
+				const char* angles = getAngleFromSides(triangleSides[0], triangleSides[1], triangleSides[2]);
+				printf("%s\n", result);
+				printf("The angles are: %s\n", angles);
+			}
+			else {
+				printf("The sides do not form a triangle.\n");
+			}
 			break;
 		case 2:
 			printf_s("Rectangle selected\n");

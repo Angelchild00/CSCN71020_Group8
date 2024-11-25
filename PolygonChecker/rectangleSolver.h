@@ -2,7 +2,6 @@
 //Maybe we can use .h in the header files so when we include our .h files in the .c file, we don't need to include these again.
 #include <stdio.h>
 #include <stdbool.h>
-#include <math.h>
 #include <limits.h>
 
 typedef struct corners {
