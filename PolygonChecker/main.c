@@ -29,6 +29,7 @@ int main() {
 			printf_s("Rectangle selected\n");
 			CORNERS points[POINTS];
 			GetInput(points);
+			sortPoints(&points);
 			// other applications of rectangle function
 			break;
 		case 0:

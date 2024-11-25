@@ -77,12 +77,12 @@ char* doLengthsFormTriangle(int side1, int side2, int side3) {		// TO DO: might 
 	if (hypotenuse == max) {	//may be some buggs from this: it should work in theory, double check during testing
 		bool istriangle = true;
 		char* angles = (getAngleFromSides(a, b, max));
-		char* result = "Given the lengths %d, %d, and %d:\nIsTriangle = TRUE\nAngles are %s",angles; 
-		return result;
+		char* result1 = "Given the lengths %d, %d, and %d:\nIsTriangle = TRUE\nAngles are %s", angles; 
+		return result1;
 	}
-	char* result = "Given the lengths %d, %d, and %d:\nIsTriangle = FALSE";
+	char* result2 = "Given the lengths %d, %d, and %d:\nIsTriangle = FALSE";
 
-	return result; 
+	return result2; 
 }
 
 char* getAngleFromSides(int a, int b, int c) {
