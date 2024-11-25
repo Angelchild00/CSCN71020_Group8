@@ -46,8 +46,8 @@ int* getTriangleSides(int* triangleSides) {
 	return triangleSides;
 }
 
-char* doLengthsFormTriangle(int side1, int side2, int side3) {
-	// ex. inputs 5, 3, 4
+char* doLengthsFormTriangle(int side1, int side2, int side3) {		// TO DO: might have to make this return a bool
+	// ex. inputs 5, 3, 4											// and, move lines 79-83 to main
 	//max = 5
 	//hypotenuse = sqrt((3 ^ 2) + (4 ^ 2))
 	//does max == hypotenuse ?
@@ -74,7 +74,7 @@ char* doLengthsFormTriangle(int side1, int side2, int side3) {
 	int hypotenuse = sqrt((asquar + bsquar));
 
 	char* result = "";
-	if (hypotenuse == max) {	//may be some buggs from this: it shoudl work in theory, double check during testing
+	if (hypotenuse == max) {	//may be some buggs from this: it should work in theory, double check during testing
 		bool istriangle = true;
 		char* angles = (getAngleFromSides(a, b, max));
 		char* result = "Given the lengths %d, %d, and %d:\nIsTriangle = TRUE\nAngles are %s",angles; 

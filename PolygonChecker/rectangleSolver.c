@@ -79,28 +79,28 @@ double PerimeterFrom4Points(int x1, int y1, int x2, int y2, int x3, int y3, int 
 // This func should work only if the shape is rectangle.
 double AreaOfRectangle(int x1, int y1, int x2, int y2, int x3, int y3) {
 	// area = length * width
-	double line1 = sqrt(pow((x1 - x2), 2) + pow((y1 - y2), 2));
-	double line2 = sqrt(pow((x2 - x3), 2) + pow((y2 - y3), 2));
+	double line1 = sqrt(pow((x1 - x2), 2) + pow((y1 - y2), 2));	//length
+	double line2 = sqrt(pow((x2 - x3), 2) + pow((y2 - y3), 2));	//width
 	double area = line1 * line2;
 	return area;
 }
 
 
-////main rectangle function
-//char* analyzeRectangle(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4) {
-//	sortPoints(&x1, &y1, &x2, &y2, &x3, &y3, &x4, &y4);
-//
-//	int perimeter = ("test %d", PerimeterFrom4Points(x1, y1, x2, y2, x3, y3, x4, y4));
-//
-//
-//	if (checkIsRectangle(x1, y1, x2, y2, x3, y3, x4, y4) == true) {
-//		float area = AreaOfRectangle(length, width);
-//		// return perimeter, area
-//	}
-//
-//	return perimeter;
-//}
-//
+//main rectangle function
+char* analyzeRectangle(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4) {
+	//sortPoints(&x1, &y1, &x2, &y2, &x3, &y3, &x4, &y4);	
+
+	int perimeter = PerimeterFrom4Points(x1, y1, x2, y2, x3, y3, x4, y4);
+
+	if (CheckRightAngle(x1, y1, x2, y2, x3, y3, x4, y4) == true) {
+		float area = AreaOfRectangle(x1,y1,x2,y2,x3,y3);
+		char result = ("IsRectangle = True\nPerimeter = %d\nArea = %d", perimeter, area);
+		return result;
+	}
+	char result = ("IsRectangle = False\nPerimeter of shape = %d", perimeter);
+	return ;
+}
+
 //// working on this
 //void sortPoints(int* x1, int* y1, int* x2, int* y2, int* x3, int* y3, int* x4, int* y4) {
 //	//given: 3,3  4,5  5,3  2,5  

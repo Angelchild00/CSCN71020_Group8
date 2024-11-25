@@ -21,6 +21,7 @@ int main() {
 			int triangleSides[3] = { 0, 0, 0 };
 			int* triangleSidesPtr = getTriangleSides(triangleSides);
 			//printf_s("! %d\n", triangleSidesPtr[0]);
+			// doLengthsFormTriangle(triangleSidesPtr[0], triangleSidesPtr[1], triangleSidesPtr[2])	
 			result = analyzeTriangle(triangleSidesPtr[0], triangleSidesPtr[1], triangleSidesPtr[2]);
 			printf_s("%s\n", result);
 			break;
@@ -28,6 +29,7 @@ int main() {
 			printf_s("Rectangle selected\n");
 			CORNERS points[POINTS];
 			GetInput(points);
+			// other applications of rectangle function
 			break;
 		case 0:
 			continueProgram = false;
