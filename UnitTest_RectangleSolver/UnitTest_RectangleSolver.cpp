@@ -1,5 +1,9 @@
 #include "pch.h"
 #include "CppUnitTest.h"
+typedef struct corners {
+	int x;
+	int y;
+} CORNERS, PTCORNERS; 
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
