@@ -76,11 +76,10 @@ char* doLengthsFormTriangle(int side1, int side2, int side3) {		// TO DO: might 
 	char* result = "";
 	if (hypotenuse == max) {	//may be some buggs from this: it should work in theory, double check during testing
 		bool istriangle = true;
-		char* angles = (getAngleFromSides(a, b, max));
-		char* result1 = "Given the lengths %d, %d, and %d:\nIsTriangle = TRUE\nAngles are %s", angles; 
+		char* result1 = ("Given the lengths %d, %d, and %d:\nIsTriangle = TRUE\nAngles are %s",a,b,max, getAngleFromSides(a, b, max));
 		return result1;
 	}
-	char* result2 = "Given the lengths %d, %d, and %d:\nIsTriangle = FALSE";
+	char* result2 = ("Given the lengths %d, %d, and %d:\nIsTriangle = FALSE", a, b, max); 
 
 	return result2; 
 }

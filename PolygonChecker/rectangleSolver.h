@@ -29,9 +29,9 @@ double AreaOfRectangle(int x1, int y1, int x2, int y2, int x3, int y3);
 double LengthOfTwoPoints(int x1, int x2, int y1, int y2);
 //// utils library for rectangle functions
 //
-char* analyzeRectangle(CORNERS points[]);
+char* analyzeRectangle(CORNERS* points);
 
-void sortPoints(CORNERS points[]);
+CORNERS sortPoints(CORNERS* points);
 //
 //bool checkIsRectangle(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
 //
