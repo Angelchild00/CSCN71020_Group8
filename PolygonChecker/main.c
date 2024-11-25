@@ -3,15 +3,14 @@
 #include "main.h"
 #include "triangleSolver.h"
 #include "rectangleSolver.h"
-#define POINTS		4
+#define POINTS 4
 
 int side = 0;
 
 int main() {
-	bool continueProgram = true;
-	while (continueProgram) {
-		printWelcome();
-
+    bool continueProgram = true;
+    while (continueProgram) {
+        printWelcome();
 		int shapeChoice = printShapeMenu();
 		char* result;
 		switch (shapeChoice)
@@ -48,25 +47,22 @@ int main() {
 }
 
 void printWelcome() {
-	printf_s("\n");
-	printf_s(" **********************\n");
-	printf_s("**     Welcome to     **\n");
-	printf_s("**   Polygon Checker  **\n");
-	printf_s(" **********************\n");
+    printf_s("\n");
+    printf_s(" **********************\n");
+    printf_s("**     Welcome to     **\n");
+    printf_s("**   Polygon Checker  **\n");
+    printf_s(" **********************\n");
 }
 
 int printShapeMenu() {
-	printf_s("1. Triangle\n");
-	printf_s("2. Rectangle\n");
-	printf_s("0. Exit\n");
-	
+    printf_s("1. Triangle\n");
+    printf_s("2. Rectangle\n");
+    printf_s("0. Exit\n");
 
-	int shapeChoice;
+    int shapeChoice;
 
-	printf_s("Enter number: ");
-	scanf_s("%d", &shapeChoice);
+    printf_s("Enter number: ");
+    scanf_s("%d", &shapeChoice);
 
-	return shapeChoice;
+    return shapeChoice;
 }
-
-	
