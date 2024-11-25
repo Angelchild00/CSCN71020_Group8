@@ -87,7 +87,7 @@ double AreaOfRectangle(int x1, int y1, int x2, int y2, int x3, int y3) {
 
 
 //main rectangle function
-char* analyzeRectangle(CORNERS* points) {
+char* analyzeRectangle(CORNERS* points) {	//TODO: change to bool value, and move perimeter and area to main
 	*points = sortPoints(points);	//TODO: fix point storage from sort points
 
 	int perimeter = PerimeterFrom4Points(points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y, points[3].x, points[3].y);
