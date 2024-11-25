@@ -34,8 +34,7 @@ int main() {
 			printf_s("Rectangle selected\n");
 			CORNERS points[POINTS];
 			GetInput(points);
-			result = analyzeRectangle(points);
-			printf_s("%s\n", result);
+			analyzeRectangle(points);	// this does return a bool value if we ever need it
 			break;
 		case 0:
 			continueProgram = false;
