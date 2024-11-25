@@ -98,7 +98,7 @@ char* analyzeRectangle(CORNERS* points) {
 		float area = AreaOfRectangle(points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y);
 		char result = ("IsRectangle = True\nPerimeter = %d\nArea = %d", perimeter, area);
 	}
-	return result;
+	return &result;
 }
 
 // sorts points given by user to desired format
