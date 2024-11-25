@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <limits.h>
+#include <math.h>
 
 typedef struct corners {
 	int x;
