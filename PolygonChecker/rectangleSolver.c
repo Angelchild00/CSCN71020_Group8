@@ -40,6 +40,21 @@ int ValidateInput(CORNERS points) {
 		return 0;
 }
 
+bool CheckRightAngle(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4) {
+	//Get length and width of 4 lines.
+	int line1x = x2 - x1; int line1y = y2 - y1;
+	int line2x = x3 - x2; int line2y = y3 - y2;
+	int line3x = x4 - x3; int line3y = y4 - y3;
+	int line4x = x1 - x4; int line4y = y1 - y4;
+	//Calculate every dot product of two cross lines.
+	int DotProduct1 = line1x * line2x + line1y * line2y;
+	int DotProduct2 = line2x * line3x + line2y * line3y;
+	int DotProduct3 = line3x * line4x + line3y * line4y;
+	int DotProduct4 = line4x * line1x + line4y * line1y;
+	//Check if four dot products are all 0, all 0 means it's a rectangle.
+	return DotProduct1 == 0 && DotProduct2 == 0 && DotProduct3 == 0 && DotProduct4 == 0;
+}
+
 // This func should work for whatever points of two.
 double LengthOfTwoPoints(int x1, int x2, int y1, int y2) {
 	//int x1 = CORNERS.x;
