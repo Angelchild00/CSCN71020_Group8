@@ -21,8 +21,12 @@ namespace UnitTestRectangleSolver
 	{
 	public:
 		
-		TEST_METHOD(TestMethod1)
+		TEST_METHOD(Test_ValidateInput)
 		{
+			CORNERS p = {1, 2};
+			Assert::AreEqual(1, ValidateInput(p)); p.x = -1;
+			Assert::AreEqual(0, ValidateInput(p)); p.y = -2;
+			Assert::AreEqual(0, ValidateInput(p));
 		}
 	};
 }
