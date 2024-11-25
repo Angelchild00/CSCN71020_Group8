@@ -29,8 +29,8 @@ int main() {
 			printf_s("Rectangle selected\n");
 			CORNERS points[POINTS];
 			GetInput(points);
-			sortPoints(&points);
-			// other applications of rectangle function
+			result = analyzeRectangle(points);
+			printf_s("%s\n", result);
 			break;
 		case 0:
 			continueProgram = false;

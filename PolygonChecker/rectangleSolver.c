@@ -87,18 +87,18 @@ double AreaOfRectangle(int x1, int y1, int x2, int y2, int x3, int y3) {
 
 
 //main rectangle function
-char* analyzeRectangle(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4) {
-	//sortPoints(&x1, &y1, &x2, &y2, &x3, &y3, &x4, &y4);	
+char* analyzeRectangle(CORNERS points[]) {
+	sortPoints(&points);	
 
-	int perimeter = PerimeterFrom4Points(x1, y1, x2, y2, x3, y3, x4, y4);
-
-	if (CheckRightAngle(x1, y1, x2, y2, x3, y3, x4, y4) == true) {
-		float area = AreaOfRectangle(x1,y1,x2,y2,x3,y3);
-		char result = ("IsRectangle = True\nPerimeter = %d\nArea = %d", perimeter, area);
-		return result;
-	}
+	int perimeter = PerimeterFrom4Points(points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y, points[3].x, points[3].y);
+	
 	char result = ("IsRectangle = False\nPerimeter of shape = %d", perimeter);
-	return ;
+
+	if (CheckRightAngle(points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y, points[3].x, points[3].y) == true) {
+		float area = AreaOfRectangle(points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y);
+		char result = ("IsRectangle = True\nPerimeter = %d\nArea = %d", perimeter, area);
+	}
+	return result;
 }
 
 // sorts points given by user to desired format
