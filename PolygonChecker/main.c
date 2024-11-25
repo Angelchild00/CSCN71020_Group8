@@ -11,41 +11,39 @@ int main() {
     bool continueProgram = true;
     while (continueProgram) {
         printWelcome();
-
-        int shapeChoice = printShapeMenu();
-        const char* result;  // Corrected to const char*
-        switch (shapeChoice)
-        {
-        case 1:
-            printf("Triangle selected.\n");
-            int triangleSides[3] = { 0, 0, 0 };
-            getTriangleSides(triangleSides);
-            if (doLengthsFormTriangle(triangleSides[0], triangleSides[1], triangleSides[2])) {
-                result = analyzeTriangle(triangleSides[0], triangleSides[1], triangleSides[2]);
-                const char* angles = getAngleFromSides(triangleSides[0], triangleSides[1], triangleSides[2]);
-                printf("%s\n", result);
-                printf("The angles are: %s\n", angles);
-            }
-            else {
-                printf("The sides do not form a triangle.\n");
-            }
-            break;
-        case 2:
-            printf_s("Rectangle selected\n");
-            CORNERS points[POINTS];
-            GetInput(points);
-            result = analyzeRectangle(points);
-            printf_s("%s\n", result);
-            break;
-        case 0:
-            continueProgram = false;
-            break;
-        default:
-            printf_s("Invalid value entered.\n");
-            break;
-        }
-    }
-    return 0;
+		int shapeChoice = printShapeMenu();
+		char* result;
+		switch (shapeChoice)
+		{
+		case 1:
+			printf("Triangle selected.\n");
+			int triangleSides[3] = { 0, 0, 0 };
+			getTriangleSides(triangleSides);
+			if (doLengthsFormTriangle(triangleSides[0], triangleSides[1], triangleSides[2])) {
+				const char* result = analyzeTriangle(triangleSides[0], triangleSides[1], triangleSides[2]);
+				const char* angles = getAngleFromSides(triangleSides[0], triangleSides[1], triangleSides[2]);
+				printf("%s\n", result);
+				printf("The angles are: %s\n", angles);
+			}
+			else {
+				printf("The sides do not form a triangle.\n");
+			}
+			break;
+		case 2:
+			printf_s("Rectangle selected\n");
+			CORNERS points[POINTS];
+			GetInput(points);
+			analyzeRectangle(points);	// this does return a bool value if we ever need it
+			break;
+		case 0:
+			continueProgram = false;
+			break;
+		default:
+			printf_s("Invalid value entered.\n");
+			break;
+		}
+	}
+	return 0;
 }
 
 void printWelcome() {

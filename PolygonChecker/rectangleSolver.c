@@ -87,18 +87,20 @@ double AreaOfRectangle(int x1, int y1, int x2, int y2, int x3, int y3) {
 
 
 //main rectangle function
-char* analyzeRectangle(CORNERS* points) {	//TODO: change to bool value, and move perimeter and area to main
+bool analyzeRectangle(CORNERS* points) {
 	*points = sortPoints(points);	//TODO: fix point storage from sort points
 
 	int perimeter = PerimeterFrom4Points(points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y, points[3].x, points[3].y);
 	
-	char result = ("IsRectangle = False\nPerimeter of shape = %d", perimeter);
+	//char result = ("IsRectangle = False\nPerimeter of shape = %d", perimeter);
 
 	if (CheckRightAngle(points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y, points[3].x, points[3].y)) {
 		float area = AreaOfRectangle(points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y);
-		char result = ("IsRectangle = True\nPerimeter = %d\nArea = %d", perimeter, area);
+		printf("IsRectangle = True\nPerimeter = %d\nRectangle Area = %f", perimeter, area);
+		return true;
 	}
-	return &result;
+	printf("IsRectangle = False\nPerimeter = %d\n", perimeter);
+	return false;
 }
 
 // sorts points given by user to desired format
