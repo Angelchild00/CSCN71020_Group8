@@ -43,5 +43,22 @@ namespace UnitTestRectangleSolver
 		double result = PerimeterFrom4Points(0, 0, 3, 0, 3, 4, 0, 4); 
 		Assert::AreEqual(14.0, result, 0.0001);
 		}
+		TEST_METHOD(Test_Area1) {
+		// Test case 1: Rectangle with length 3 and width 4 
+		double result = AreaOfRectangle(0, 0, 3, 0, 3, 4);
+		Assert::AreEqual(12.0, result, 0.0001);
+		}
+		TEST_METHOD(Test_Area2) {
+			// Test case 2: Rectangle with length 5 and width 2 
+		double result = AreaOfRectangle(0, 0, 5, 0, 5, 2); 
+		Assert::AreEqual(10.0, result, 0.0001);
+		}
+		TEST_METHOD(Test_Area3) {
+			// Test case 3: Rectangle with length 7 and width 3 
+		double result = AreaOfRectangle(0, 0, 7, 0, 7, 3); 
+		Assert::AreEqual(21.0, result, 0.0001);
+		}
+
+
 	};
 }
