@@ -87,14 +87,14 @@ double AreaOfRectangle(int x1, int y1, int x2, int y2, int x3, int y3) {
 
 
 //main rectangle function
-char* analyzeRectangle(CORNERS points[]) {
-	sortPoints(&points);	
+char* analyzeRectangle(CORNERS* points) {
+	*points = sortPoints(points);	//TODO: fix point storage from sort points
 
 	int perimeter = PerimeterFrom4Points(points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y, points[3].x, points[3].y);
 	
 	char result = ("IsRectangle = False\nPerimeter of shape = %d", perimeter);
 
-	if (CheckRightAngle(points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y, points[3].x, points[3].y) == true) {
+	if (CheckRightAngle(points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y, points[3].x, points[3].y)) {
 		float area = AreaOfRectangle(points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y);
 		char result = ("IsRectangle = True\nPerimeter = %d\nArea = %d", perimeter, area);
 	}
@@ -102,10 +102,9 @@ char* analyzeRectangle(CORNERS points[]) {
 }
 
 // sorts points given by user to desired format
-void sortPoints(CORNERS points[]) {
+CORNERS sortPoints(CORNERS* points) {
 	//given: 3,3  4,5  5,3  2,5  
 	//should recieve: 3,3  5,3  4,5  2,5
-	
 	int tx1 = points[0].x; int tx2 = points[1].x; int tx3 = points[2].x; int tx4 = points[3].x;
 	int arrayX[] = { tx1, tx2, tx3, tx4 };
 	int ty1 = points[0].y; int ty2 = points[1].y; int ty3 = points[2].y; int ty4 = points[3].y;
@@ -115,67 +114,55 @@ void sortPoints(CORNERS points[]) {
 	float centerX = (sumX / POINTS);
 	float sumY = (ty1 + ty2 + ty3 + ty4);
 	float centerY = (sumY / POINTS);
+
+
 	// if x > centerX then it is in quadrant 2 or 3 (assign as outer value) 2
 	// if x < centerX then it is in quadrant 1 or 4 (assign as inner value) 1
+	int quadX[] = { 0, 0, 0, 0 };
 	for (int i = 0; i < POINTS; i++) {
 		if (arrayX[i] > centerX) {
-			arrayX[i] = UPPER;
+			quadX[i] = UPPER;
 		}
 		else {
-			arrayX[i] = LOWER;
+			quadX[i] = LOWER;
 		}
 	}
+
 	// if y > centerY then it is in quadrant 3 or 4 (assign as upper value) 2
 	// if y < centerY then it is in quadrant 1 or 2 (assign as lower value) 1
+	int quadY[] = { 0, 0, 0, 0 };
 	for (int i = 0; i < POINTS; i++) {
 		if (arrayY[i] > centerY) {
-			arrayY[i] = UPPER;
+			quadY[i] = UPPER;
 		}
 		else {
-			arrayY[i] = LOWER;
+			quadY[i] = LOWER;
 		}
 	}
+
+	CORNERS newPoints[POINTS];
 	//	sorting the points using the quadrants
 	for (int i = 0; i < POINTS; i++) {
 		// p1 = lower && lower
-		if ((arrayX[i] = LOWER) && (arrayY[i] = LOWER)) {
-			points[i].x = arrayX[i];
-			points[i].y = arrayY[i];
+		if ((quadX[i] == LOWER) && (quadY[i] == LOWER)) {
+			newPoints[0].x = arrayX[i];
+			newPoints[0].y = arrayY[i];
 		}
 		// p2 = upperX && lowerY
-		if ((arrayX[i] = UPPER) && (arrayY[i] = LOWER)) {
-			points[i].x = arrayX[i];
-			points[i].y = arrayY[i];
+		if ((quadX[i] == UPPER) && (quadY[i] == LOWER)) {
+			newPoints[1].x = arrayX[i];
+			newPoints[1].y = arrayY[i];
 		}
 		// p3 = upper && upper
-		if ((arrayX[i] = UPPER) && (arrayY[i] = UPPER)) {
-			points[i].x = arrayX[i];
-			points[i].y = arrayY[i];
+		if ((quadX[i] == UPPER) && (quadY[i] == UPPER)) {
+			newPoints[2].x = arrayX[i];
+			newPoints[2].y = arrayY[i];
 		}
 		// p4 = lowerX && upperY
-		if ((arrayX[i] = LOWER) && (arrayY[i] = UPPER)) {
-			points[i].x = arrayX[i];
-			points[i].y = arrayY[i];
+		if ((quadX[i] == LOWER) && (quadY[i] == UPPER)) {
+			newPoints[3].x = arrayX[i];
+			newPoints[3].y = arrayY[i];
 		}
 	}
+	return *newPoints;
 }
-
-//bool checkIsRectangle(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4) {
-//	//check anlges
-//	{
-//		// if all angles == 90deg
-//		return true;
-//	}
-//
-//	return false;
-//}
-
-//int PerimeterFrom4Points(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4) {
-//	// find the 4 lengths
-//	// perimeter = l1 + l2 + l3 + l4
-//}
-
-//float AreaOfRectangle(int length, int width) {
-//	// area = length * width
-//}
-

@@ -45,7 +45,6 @@ int* getTriangleSides(int* triangleSides) {
 }
 
 
-
 const char* getAngleFromSides(int a, int b, int c) {
 	static char result[100];
 	float angles[3] = { 0 };
