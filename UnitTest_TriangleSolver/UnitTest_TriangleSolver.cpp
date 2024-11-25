@@ -1,9 +1,9 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 
-extern "C" char* analyzeTriangle(int side1, int side2, int side3);
-extern "C" char* doLengthsFormTriangle(int side1, int side2, int side3);
-extern "C" char* getAngleFromSides(int a, int b, int c);
+extern "C" const char* analyzeTriangle(int side1, int side2, int side3); 
+extern "C" bool doLengthsFormTriangle(int side1, int side2, int side3);
+extern "C" const char* getAngleFromSides(int a, int b, int c);
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 

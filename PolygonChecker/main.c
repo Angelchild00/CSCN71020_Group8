@@ -3,71 +3,68 @@
 #include "main.h"
 #include "triangleSolver.h"
 #include "rectangleSolver.h"
-#define POINTS		4
+#define POINTS 4
 
 int side = 0;
 
 int main() {
-	bool continueProgram = true;
-	while (continueProgram) {
-		printWelcome();
+    bool continueProgram = true;
+    while (continueProgram) {
+        printWelcome();
 
-		int shapeChoice = printShapeMenu();
-		char* result;
-		switch (shapeChoice)
-		{
-		case 1:
-			printf("Triangle selected.\n");
-			int triangleSides[3] = { 0, 0, 0 };
-			getTriangleSides(triangleSides);
-			if (doLengthsFormTriangle(triangleSides[0], triangleSides[1], triangleSides[2])) {
-				const char* result = analyzeTriangle(triangleSides[0], triangleSides[1], triangleSides[2]);
-				const char* angles = getAngleFromSides(triangleSides[0], triangleSides[1], triangleSides[2]);
-				printf("%s\n", result);
-				printf("The angles are: %s\n", angles);
-			}
-			else {
-				printf("The sides do not form a triangle.\n");
-			}
-			break;
-		case 2:
-			printf_s("Rectangle selected\n");
-			CORNERS points[POINTS];
-			GetInput(points);
-			result = analyzeRectangle(points);
-			printf_s("%s\n", result);
-			break;
-		case 0:
-			continueProgram = false;
-			break;
-		default:
-			printf_s("Invalid value entered.\n");
-			break;
-		}
-	}
-	return 0;
+        int shapeChoice = printShapeMenu();
+        const char* result;  // Corrected to const char*
+        switch (shapeChoice)
+        {
+        case 1:
+            printf("Triangle selected.\n");
+            int triangleSides[3] = { 0, 0, 0 };
+            getTriangleSides(triangleSides);
+            if (doLengthsFormTriangle(triangleSides[0], triangleSides[1], triangleSides[2])) {
+                result = analyzeTriangle(triangleSides[0], triangleSides[1], triangleSides[2]);
+                const char* angles = getAngleFromSides(triangleSides[0], triangleSides[1], triangleSides[2]);
+                printf("%s\n", result);
+                printf("The angles are: %s\n", angles);
+            }
+            else {
+                printf("The sides do not form a triangle.\n");
+            }
+            break;
+        case 2:
+            printf_s("Rectangle selected\n");
+            CORNERS points[POINTS];
+            GetInput(points);
+            result = analyzeRectangle(points);
+            printf_s("%s\n", result);
+            break;
+        case 0:
+            continueProgram = false;
+            break;
+        default:
+            printf_s("Invalid value entered.\n");
+            break;
+        }
+    }
+    return 0;
 }
 
 void printWelcome() {
-	printf_s("\n");
-	printf_s(" **********************\n");
-	printf_s("**     Welcome to     **\n");
-	printf_s("**   Polygon Checker  **\n");
-	printf_s(" **********************\n");
+    printf_s("\n");
+    printf_s(" **********************\n");
+    printf_s("**     Welcome to     **\n");
+    printf_s("**   Polygon Checker  **\n");
+    printf_s(" **********************\n");
 }
 
 int printShapeMenu() {
-	printf_s("1. Triangle\n");
-	printf_s("2. Rectangle\n");
-	printf_s("0. Exit\n");
-	
+    printf_s("1. Triangle\n");
+    printf_s("2. Rectangle\n");
+    printf_s("0. Exit\n");
 
-	int shapeChoice;
+    int shapeChoice;
 
-	printf_s("Enter number: ");
-	scanf_s("%d", &shapeChoice);
+    printf_s("Enter number: ");
+    scanf_s("%d", &shapeChoice);
 
-	return shapeChoice;
+    return shapeChoice;
 }
-
-	
