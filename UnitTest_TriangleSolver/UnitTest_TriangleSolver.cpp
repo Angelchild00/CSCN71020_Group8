@@ -36,6 +36,16 @@ namespace UnitTestTriangleSolver
 			const char* result = analyzeTriangle(1, 2, 3);
 			Assert::AreEqual("Not a triangle", result);
 		}
+		TEST_METHOD(Test_AnglesOfRightTriangle)
+        {
+            const char* angles = getAngleFromSides(3, 4, 5);
+            Assert::AreEqual("36.87, 53.13, and 90.00", angles);
+        }
+		TEST_METHOD(Test_AnglesOfEquilateralTriangle)
+		{
+			const char* angles = getAngleFromSides(3, 3, 3);
+			Assert::AreEqual("60.00, 60.00, and 60.00", angles);
+		}
 
 	};
 }
