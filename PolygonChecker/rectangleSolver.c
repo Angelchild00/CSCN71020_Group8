@@ -88,30 +88,18 @@ double AreaOfRectangle(int x1, int y1, int x2, int y2, int x3, int y3) {
 
 //main rectangle function
 bool analyzeRectangle(CORNERS* points) {
-	CORNERS* sortedPoints = sortPoints(points);  // Get sorted points
 
-	// Calculate the perimeter using the sorted points
-	int perimeter = PerimeterFrom4Points(
-		sortedPoints[0].x, sortedPoints[0].y,
-		sortedPoints[1].x, sortedPoints[1].y,
-		sortedPoints[2].x, sortedPoints[2].y,
-		sortedPoints[3].x, sortedPoints[3].y
-	);
+	CORNERS newPoints[POINTS] = { 0 };
+	for (int i = 0; i < POINTS; i++) {
+		newPoints[i] = sortPoints(points, i);
+	}
 
-	// Check right angles using the sorted points
-	if (CheckRightAngle(
-		sortedPoints[0].x, sortedPoints[0].y,
-		sortedPoints[1].x, sortedPoints[1].y,
-		sortedPoints[2].x, sortedPoints[2].y,
-		sortedPoints[3].x, sortedPoints[3].y
-	)) {
+	int perimeter = PerimeterFrom4Points(newPoints[0].x, newPoints[0].y, newPoints[1].x, newPoints[1].y, newPoints[2].x, newPoints[2].y, newPoints[3].x, newPoints[3].y);
+	
+	//char result = ("IsRectangle = False\nPerimeter of shape = %d", perimeter);
 
-		// Calculate the area using the sorted points
-		float area = AreaOfRectangle(
-			sortedPoints[0].x, sortedPoints[0].y,
-			sortedPoints[1].x, sortedPoints[1].y,
-			sortedPoints[2].x, sortedPoints[2].y
-		);
+	if (CheckRightAngle(newPoints[0].x, newPoints[0].y, newPoints[1].x, newPoints[1].y, newPoints[2].x, newPoints[2].y, newPoints[3].x, newPoints[3].y)) {
+		float area = AreaOfRectangle(newPoints[0].x, newPoints[0].y, newPoints[1].x, newPoints[1].y, newPoints[2].x, newPoints[2].y);
 
 		printf("IsRectangle = True\nPerimeter = %d\nRectangle Area = %f", perimeter, area);
 		return true;
@@ -121,8 +109,11 @@ bool analyzeRectangle(CORNERS* points) {
 	return false;
 }
 
-CORNERS* sortPoints(CORNERS* points) {
-	// Arrays to hold the x and y coordinates.
+// sorts points given by user to desired format
+CORNERS sortPoints(CORNERS* points, int p) {
+	//given: 3,3  4,5  5,3  2,5  
+	//should recieve: 3,3  5,3  4,5  2,5
+
 	int tx1 = points[0].x; int tx2 = points[1].x; int tx3 = points[2].x; int tx4 = points[3].x;
 	int arrayX[] = { tx1, tx2, tx3, tx4 };
 	int ty1 = points[0].y; int ty2 = points[1].y; int ty3 = points[2].y; int ty4 = points[3].y;
@@ -158,5 +149,6 @@ CORNERS* sortPoints(CORNERS* points) {
 			newPoints[3] = points[i];
 		}
 	}
-	return newPoints;
+
+	return newPoints[p];
 }

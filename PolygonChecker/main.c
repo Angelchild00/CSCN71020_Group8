@@ -32,7 +32,7 @@ int main() {
 		case 2:
 			printf_s("Rectangle selected\n");
 			CORNERS points[POINTS];
-			GetInput(points);
+			GetInput(points);			//TODO: prevent user from inputting the same point twice
 			analyzeRectangle(points);	// this does return a bool value if we ever need it
 			break;
 		case 0:
