@@ -31,7 +31,7 @@ double LengthOfTwoPoints(int x1, int x2, int y1, int y2);
 //
 bool analyzeRectangle(CORNERS* points);
 
-CORNERS sortPoints(CORNERS* points);
+CORNERS sortPoints(CORNERS* points, int p);
 //
 //bool checkIsRectangle(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
 //
