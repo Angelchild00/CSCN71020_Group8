@@ -88,7 +88,7 @@ double AreaOfRectangle(int x1, int y1, int x2, int y2, int x3, int y3) {
 
 //main rectangle function
 bool analyzeRectangle(CORNERS* points) {
-	CORNERS newPoints[POINTS] = { 0 };	//TODO: fix point storage from sort points
+	CORNERS newPoints[POINTS] = { 0 };
 	for (int i = 0; i < POINTS; i++) {
 		newPoints[i] = sortPoints(points, i);
 	}
