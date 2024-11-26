@@ -88,6 +88,7 @@ double AreaOfRectangle(int x1, int y1, int x2, int y2, int x3, int y3) {
 
 //main rectangle function
 bool analyzeRectangle(CORNERS* points) {
+
 	CORNERS newPoints[POINTS] = { 0 };
 	for (int i = 0; i < POINTS; i++) {
 		newPoints[i] = sortPoints(points, i);
@@ -99,9 +100,11 @@ bool analyzeRectangle(CORNERS* points) {
 
 	if (CheckRightAngle(newPoints[0].x, newPoints[0].y, newPoints[1].x, newPoints[1].y, newPoints[2].x, newPoints[2].y, newPoints[3].x, newPoints[3].y)) {
 		float area = AreaOfRectangle(newPoints[0].x, newPoints[0].y, newPoints[1].x, newPoints[1].y, newPoints[2].x, newPoints[2].y);
+
 		printf("IsRectangle = True\nPerimeter = %d\nRectangle Area = %f", perimeter, area);
 		return true;
 	}
+
 	printf("IsRectangle = False\nPerimeter = %d\n", perimeter);
 	return false;
 }
@@ -110,64 +113,42 @@ bool analyzeRectangle(CORNERS* points) {
 CORNERS sortPoints(CORNERS* points, int p) {
 	//given: 3,3  4,5  5,3  2,5  
 	//should recieve: 3,3  5,3  4,5  2,5
+
 	int tx1 = points[0].x; int tx2 = points[1].x; int tx3 = points[2].x; int tx4 = points[3].x;
 	int arrayX[] = { tx1, tx2, tx3, tx4 };
 	int ty1 = points[0].y; int ty2 = points[1].y; int ty3 = points[2].y; int ty4 = points[3].y;
 	int arrayY[] = { ty1, ty2, ty3, ty4 };
-	// find center point for x's any y's by adding them together then dividing by 4
+
+	// Find the center point for sorting.
 	float sumX = (tx1 + tx2 + tx3 + tx4);
 	float centerX = (sumX / POINTS);
 	float sumY = (ty1 + ty2 + ty3 + ty4);
 	float centerY = (sumY / POINTS);
 
-
-	// if x > centerX then it is in quadrant 2 or 3 (assign as outer value) 2
-	// if x < centerX then it is in quadrant 1 or 4 (assign as inner value) 1
-	int quadX[] = { 0, 0, 0, 0 };
+	// Determine the quadrant of each point based on the center point.
+	int quadX[POINTS] = { 0 };
+	int quadY[POINTS] = { 0 };
 	for (int i = 0; i < POINTS; i++) {
-		if (arrayX[i] > centerX) {
-			quadX[i] = UPPER;
+		quadX[i] = (arrayX[i] > centerX) ? UPPER : LOWER;
+		quadY[i] = (arrayY[i] > centerY) ? UPPER : LOWER;
+	}
+
+	// Sort the points into a new array based on their quadrant values.
+	static CORNERS newPoints[POINTS];
+	for (int i = 0; i < POINTS; i++) {
+		if (quadX[i] == LOWER && quadY[i] == LOWER) {
+			newPoints[0] = points[i];
 		}
-		else {
-			quadX[i] = LOWER;
+		else if (quadX[i] == UPPER && quadY[i] == LOWER) {
+			newPoints[1] = points[i];
+		}
+		else if (quadX[i] == UPPER && quadY[i] == UPPER) {
+			newPoints[2] = points[i];
+		}
+		else if (quadX[i] == LOWER && quadY[i] == UPPER) {
+			newPoints[3] = points[i];
 		}
 	}
 
-	// if y > centerY then it is in quadrant 3 or 4 (assign as upper value) 2
-	// if y < centerY then it is in quadrant 1 or 2 (assign as lower value) 1
-	int quadY[] = { 0, 0, 0, 0 };
-	for (int i = 0; i < POINTS; i++) {
-		if (arrayY[i] > centerY) {
-			quadY[i] = UPPER;
-		}
-		else {
-			quadY[i] = LOWER;
-		}
-	}
-
-	CORNERS newPoints[POINTS];
-	//	sorting the points using the quadrants
-	for (int i = 0; i < POINTS; i++) {
-		// p1 = lower && lower
-		if ((quadX[i] == LOWER) && (quadY[i] == LOWER)) {
-			newPoints[0].x = arrayX[i];
-			newPoints[0].y = arrayY[i];
-		}
-		// p2 = upperX && lowerY
-		if ((quadX[i] == UPPER) && (quadY[i] == LOWER)) {
-			newPoints[1].x = arrayX[i];
-			newPoints[1].y = arrayY[i];
-		}
-		// p3 = upper && upper
-		if ((quadX[i] == UPPER) && (quadY[i] == UPPER)) {
-			newPoints[2].x = arrayX[i];
-			newPoints[2].y = arrayY[i];
-		}
-		// p4 = lowerX && upperY
-		if ((quadX[i] == LOWER) && (quadY[i] == UPPER)) {
-			newPoints[3].x = arrayX[i];
-			newPoints[3].y = arrayY[i];
-		}
-	}
 	return newPoints[p];
 }
