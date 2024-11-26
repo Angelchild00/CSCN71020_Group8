@@ -58,7 +58,6 @@ namespace UnitTestRectangleSolver
 		double result = AreaOfRectangle(0, 0, 7, 0, 7, 3); 
 		Assert::AreEqual(21.0, result, 0.0001);
 		}
-
-
+		
 	};
 }
