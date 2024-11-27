@@ -11,7 +11,9 @@ int main() {
     bool continueProgram = true;
     while (continueProgram) {
         printWelcome();
-		int shapeChoice = printShapeMenu();
+		printShapeMenu();
+		int shapeChoice;
+		shapeChoice = getIntInput("Enter menu option number:");
 		char* result;
 		switch (shapeChoice)
 		{
@@ -54,15 +56,27 @@ void printWelcome() {
     printf_s(" **********************\n");
 }
 
-int printShapeMenu() {
+void printShapeMenu() {
     printf_s("1. Triangle\n");
     printf_s("2. Rectangle\n");
     printf_s("0. Exit\n");
 
-    int shapeChoice;
+    //int shapeChoice;
 
-    printf_s("Enter number: ");
-    scanf_s("%d", &shapeChoice);
+    //printf_s("Enter number: ");
+    //scanf_s("%d", &shapeChoice);
 
-    return shapeChoice;
+    //return shapeChoice;
+}
+
+int getIntInput(char message[]) {
+	int input;
+	int scannedValues;
+	do {
+		printf("\n%s\n", message);
+		scannedValues = scanf_s("%i", &input);
+		int buf;
+		while ((buf = getchar()) != '\n' && buf != EOF);
+	} while (scannedValues != 1);
+	return input;
 }
